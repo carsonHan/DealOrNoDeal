@@ -1,0 +1,96 @@
+public class InputChecker {
+    Scanner input = new Scanner(System.in);
+    Bank banker = new Bank();
+
+    public boolean gameStatus() {
+        System.out.print("\tDeal or No-Deal! [1]Deal [2]No-Deal: ");
+        while (!input.hasNextInt()) {
+            System.out.println("\n\tInput is not an integer!");
+            System.out.print("\tPlease enter again: ");
+            input.next();
+        }
+        int temp = input.nextInt();
+        System.out.println();
+        while (!(temp == 1 || temp == 2)){
+            System.out.println("\tInvalid input, Please enter between 1 or 2");
+            System.out.print("\tDeal or No-Deal! [1]Deal [2]No-Deal: ");
+            
+            while (!input.hasNextInt()) {
+                System.out.println("\n\tInput is not an integer!");
+                System.out.print("\tPlease enter again: ");
+                input.next();
+            }
+            temp = input.nextInt();
+            System.out.println();
+        }
+        if (temp == 1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public int userInput() {
+        boolean isInteger = false;
+        int userInput = 0;
+
+        while (isInteger == false) {
+            System.out.print("\n\tPlease Select Your Case!: ");
+            while (!input.hasNextInt()){
+                System.out.println("\n\tInput is not an integer!");
+                System.out.print("\tPlease enter again: ");
+                input.next();
+            }
+            
+            userInput = input.nextInt()-1;
+            while (!(userInput >= 0 && userInput < 16)) {
+                System.out.print("\tInvalid input, Please enter between [1~16]: ");       
+                while (!input.hasNextInt()){
+                    System.out.println("\n\tInput is not an integer!");
+                    System.out.print("\tPlease enter again: ");
+                    input.next();
+                }
+                userInput = input.nextInt()-1;
+                System.out.println();
+            } 
+            
+            if (userInput >= 0 && userInput < 16) {
+                isInteger = true;
+            }
+        } 
+        return userInput;
+    }
+
+    public int removeCase(int iteration, BriefCase c[]) {
+        int caseNum = 0;
+        boolean isInteger = false;
+
+        while (isInteger == false) {
+            System.out.print("\n\tPlease remove " + iteration + " case/s: "); 
+            while (!input.hasNextInt()) {
+                System.out.println("\n\tInput is not an integer!");
+                System.out.print("\tPlease enter again: ");
+                input.next();
+            }
+            
+            caseNum = input.nextInt()-1;
+            while (caseNum < 0 || caseNum >= c.length || c[caseNum] == null) {
+                System.out.print("\tInvalid Input, Please enter available number between [1~16]: ");
+                
+                while (!input.hasNextInt()) {
+                    System.out.println("\n\tInput is not an integer!");
+                    System.out.print("\tPlease enter again: ");
+                    input.next();
+                } 
+                caseNum = input.nextInt()-1;
+                System.out.println();
+            } 
+            if  (!(caseNum < 0 || caseNum >= c.length || c[caseNum] == null)){
+                System.out.println("\tYou just removed case # " + (caseNum + 1));
+                System.out.println("\t|" + (caseNum+1) + "| contains $" + c[caseNum].getAmount());
+                isInteger = true;
+            }
+        }
+        return caseNum;
+    }
+}
