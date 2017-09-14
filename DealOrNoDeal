@@ -22,7 +22,6 @@ public class DealOrNoDeal {
         System.out.println("\t~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*");
         System.out.println("\t~*      Welcome To Deal Or No Deal!       ~*");
         System.out.println("\t~*~*~*     Created by Carson Han    ~*~*~*~*");
-        System.out.println("\t~*~*~*     Student ID: 16936349     ~*~*~*~*");
         System.out.println("\t~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*");
         System.out.println("\t~*Please select One case from the following*");
         System.out.println("\t~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*");
