@@ -1,0 +1,20 @@
+public class BriefCase {
+    private double value;
+    private int caseNumber;
+
+    public void setAmount(double value) {
+        this.value = value;
+    }
+
+    public double getAmount() {
+        return value;
+    }
+
+    public void setNumber(int caseNumber) {
+       this.caseNumber = caseNumber;
+    }
+
+    public int getNumber() {
+        return caseNumber;
+    }
+}
