@@ -1,0 +1,36 @@
+public class Bank {
+    private double totalAmount = 0;
+    private double caseRemain = 16;
+    private double offerAmount =0;
+    private double sum = 0;
+    private double average = 0;
+    
+    public void setOffer(BriefCase[] cases, double playerAmount, int turn) {
+        for (int i = 0; i < cases.length; i++) {
+            if (cases[i] == null) {
+                caseRemain--;           
+            } else {
+                sum = sum + cases[i].getAmount();    
+                totalAmount = (sum + playerAmount);
+            }         
+        }
+        
+        if (caseRemain == 1){
+            caseRemain = 2;
+        }
+        average = totalAmount / caseRemain;
+        offerAmount = (average * turn) / 5;     
+
+    }
+
+    public double getOffer(BriefCase[] cases, double playerAmount, int turn) {
+        setOffer(cases, playerAmount, turn);
+        System.out.printf("\tThe Banker's Offer is: %.2f \n\n", offerAmount);
+        
+        sum = 0;         // reset value to default 
+        totalAmount = 0; // reset value to default
+        caseRemain = 16; // reset value to default
+        
+        return offerAmount;
+    }
+}
