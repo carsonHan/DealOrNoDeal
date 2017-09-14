@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class DealOrNoDeal {
     public double totalEarning = 0; 
     private int dummyNum = 5;
