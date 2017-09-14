@@ -1,0 +1,73 @@
+import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class PlayTest {
+    public static void main(String[] args) throws IOException{
+        Map<String,Double> records = readRecords();
+        System.out.println("\tSaved Records: ");
+        System.out.println("\t"+records);
+        System.out.println("\n");
+        
+        Scanner scanner = new Scanner(System.in);
+        String name = null;
+        Double earning = null;
+        
+        DealOrNoDeal dealNoDeal = new DealOrNoDeal();
+        dealNoDeal.launchGame();
+        
+        System.out.print("\n\tPlease enter your name: ");
+        name = scanner.nextLine();
+        earning = dealNoDeal.totalEarning;
+        earning = Double.parseDouble(String.format("%.2f", earning));
+        records.put(name, earning);
+        System.out.println("\tThe record is added");
+        writeToFile(records);
+        System.out.println("\t" +records);
+        System.out.println("");
+        System.exit(0);
+    }    
+    
+    public static Map<String,Double> readRecords(){
+        Map<String,Double> records = new HashMap<>();
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader("output.txt"));
+            String line;
+            while((line = br.readLine())!= null){
+                String[] splitString = line.split(" ");
+                records.put(splitString[0], Double.valueOf(splitString[1]));
+            }
+        }  catch (IOException ex) {
+            Logger.getLogger(PlayTest.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            if(br != null){
+                try {
+                    br.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(PlayTest.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return records;
+    }
+    
+    public static void writeToFile(Map<String,Double> records){
+        PrintWriter pw = null;
+        try {
+            pw = new PrintWriter("output.txt");
+            for(Map.Entry<String,Double> recordEntry: records.entrySet()){
+                pw.println(recordEntry.getKey()+" "+recordEntry.getValue());
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PlayTest.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            if (pw != null){
+                pw.close();
+            }
+        }    
+    }
+}
