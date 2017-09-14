@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class InputChecker {
     Scanner input = new Scanner(System.in);
     Bank banker = new Bank();
